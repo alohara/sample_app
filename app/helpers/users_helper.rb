@@ -6,7 +6,8 @@ module UsersHelper
 	#gravatar_url = "https://secure.gravatar.com/avatars/#{gravatar_id}.png"
 	
 	#Testing this Amazon JPG to see if the URL retrieval works
-	gravatar_url= "http://s3.amazonaws.com/codecademy-blog/assets/f3a16fb6.jpg"
+	#gravatar_url= "http://s3.amazonaws.com/codecademy-blog/assets/f3a16fb6.jpg"
+	gravatar_url= "rails.png"
 	image_tag(gravatar_url, alt: user.name, class: "gravatar")
 	#Default because I can't get Gravatar to work, use this after Amazon test
 	#image_tag("rails.png", alt: user.name, class: "gravatar")
