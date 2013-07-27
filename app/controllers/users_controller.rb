@@ -4,8 +4,13 @@ class UsersController < ApplicationController
   before_filter :admin_user, only: :destroy
   
   def show
-    @user = User.find(params[:id])
-	@microposts = @user.microposts.paginate(page: params[:page])
+    if signed_in?
+      @user = User.find(params[:id])
+	  @microposts = @user.microposts.paginate(page: params[:page])
+	else
+      store_location
+	  redirect_to signin_path, notice: "Please sign in."
+	end
   end
   
   def new
