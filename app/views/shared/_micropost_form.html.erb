@@ -2,8 +2,15 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
-	<%= f.check_box :visible, checked: true %>
-	<%= f.label :visible %>
+	<label class="checkbox"> <input type="checkbox"> 
+	  <%= f.check_box :visible, checked: true%>
+	  <%= f.label :visible %>
+	</label>
+	<%= f.select :category, ['PSA', 'Arts', 'Feed Me'] %>
+	<%= f.text_field :latitude %>
+	<%= f.text_field :longitude %>
+	<%= f.text_field :ip_address, default: '172.248.127.229' %>
+    <%= f.submit "Post", class: "btn btn-large btn-primary" %>
   </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+  
 <% end %>

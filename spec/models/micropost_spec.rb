@@ -11,6 +11,10 @@
 #  category    :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  latitude    :float
+#  longitude   :float
+#  ip_address  :float
+#  zipcode     :string(255)
 #
 
 require 'spec_helper'

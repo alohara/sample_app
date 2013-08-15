@@ -11,11 +11,22 @@
 #  category    :string(255)
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
+#  latitude    :float
+#  longitude   :float
+#  ip_address  :float
+#  zipcode     :string(255)
 #
 
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :visible, :eff_dt
+  attr_accessible :content, :visible, :eff_dt, :category, :latitude, :longitude, :zipcode, :ip_address
   belongs_to :user
+  geocoded_by :ip_address
+  reverse_geocoded_by :latitude, :longitude do |obj,results|
+    if geo = results.first
+      obj.zipcode = geo.postal_code
+    end
+  end
+  after_validation :geocode, :reverse_geocode
   
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true

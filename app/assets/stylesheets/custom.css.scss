@@ -157,6 +157,9 @@ input, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
+field {
+  display: inline-block;
+}
 
 #error_explanation {
   color: #f00;
