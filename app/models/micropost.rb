@@ -18,7 +18,7 @@
 #
 
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :visible, :eff_dt, :category
+  attr_accessible :content, :visible, :eff_dt, :category, :category_id
   belongs_to :user
  
 #  geocoded_by :latitude, :longtitude
