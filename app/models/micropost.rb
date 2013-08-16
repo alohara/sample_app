@@ -27,7 +27,7 @@ class Micropost < ActiveRecord::Base
 #      obj.zipcode = geo.postal_code
 #    end
 #  end
-  after_validation :geocode
+#  after_validation :geocode
   
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
