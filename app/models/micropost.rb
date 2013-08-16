@@ -21,7 +21,7 @@ class Micropost < ActiveRecord::Base
   attr_accessible :content, :visible, :eff_dt, :category, :latitude, :longitude, :zipcode, :ip_address
   belongs_to :user
  
-  geocoded_by :ip_address
+  #geocoded_by :ip_address
   reverse_geocoded_by :latitude, :longitude do |obj,results|
     if geo = results.first
       obj.zipcode = geo.postal_code
