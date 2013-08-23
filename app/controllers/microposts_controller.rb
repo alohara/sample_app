@@ -1,9 +1,11 @@
 class MicropostsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
+  
 
   def create
     @micropost = current_user.microposts.build(params[:micropost])
+    @micropost.category = Interest.find_by_id(@micropost.category_id).category
 	if @micropost.save
 	  flash[:success] = "Micropost created, yo!"
 	  redirect_to root_path
@@ -17,7 +19,7 @@ class MicropostsController < ApplicationController
     @micropost.destroy
 	redirect_back_or root_path
   end
-
+ 
   private
   
     def correct_user

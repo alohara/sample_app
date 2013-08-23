@@ -1,0 +1,22 @@
+<% provide(:title, 'Interests') %>
+<h1>Interests Administration</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@interest) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+
+	  <%= f.label :category %>
+	  <%= f.text_field :category %>
+	  
+	  <%= f.label :cat_descr %>
+	  <%= f.text_field :cat_descr %>
+	  
+	  <%= f.label :active %>
+	  <%= f.check_box :active %>
+	  
+	  <%= f.submit "Add Interest", class: "btn btn-large btn-primary" %>
+	<% end %>
+	
+  </div>
+</div>

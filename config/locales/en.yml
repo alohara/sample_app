@@ -7,3 +7,7 @@ en:
         user:
           password_digest: "Password Yo"
   hello: "Hello world"
+  activerecord:
+      attributes:
+        interest:
+          cat_descr: "Category Description"

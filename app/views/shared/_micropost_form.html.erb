@@ -2,11 +2,11 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+	<%= f.collection_select :category_id, Interest.all, :id, :category, include_blank: true %>
 	<label class="checkbox"> <input type="checkbox"> 
 	  <%= f.check_box :visible, checked: true%>
 	  <%= f.label :visible %>
 	</label>
-	<%= f.select :category, ['PSA', 'Arts', 'Feed Me'] %>
 	<%= f.submit "Post", class: "btn btn-large btn-primary" %>
   </div>
   

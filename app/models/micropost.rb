@@ -18,17 +18,16 @@
 #
 
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :visible, :eff_dt, :category, :category_id
+  attr_accessible :content, :visible, :eff_dt, :category, :category_id, :latitude, :longitude, :zipcode, :ip_address
   belongs_to :user
  
-#  geocoded_by :latitude, :longtitude
-#  reverse_geocoded_by :latitude, :longitude do |obj,results|
-#    if geo = results.first
-#      obj.zipcode = geo.postal_code
-#    end
-#  end
-#  after_validation :geocode
-  
+ geocoded_by :content
+  reverse_geocoded_by :latitude, :longitude do |obj,results|
+    if geo = results.first
+      obj.zipcode = geo.postal_code
+    end
+  end
+  after_validation :geocode, :reverse_geocode
   validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
   
@@ -40,4 +39,5 @@ class Micropost < ActiveRecord::Base
 	                     WHERE follower_id= :user_id"
 	where("(user_id IN (#{followed_user_ids}) OR user_id = :user_id) AND visible = :boolean", user_id: user.id, boolean: true)
   end
+
 end

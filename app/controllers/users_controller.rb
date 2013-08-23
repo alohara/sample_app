@@ -77,8 +77,8 @@ class UsersController < ApplicationController
 	  @user = User.find(params[:id])
 	  redirect_to(root_path) unless current_user?(@user)
 	end
-	
-	def admin_user
-	  redirect_to(root_path) unless current_user.admin?
-	end
+# Moved to sessions_helper.rb to test if central place works	
+#	def admin_user
+#	  redirect_to(root_path) unless current_user.admin?
+#	end
 end

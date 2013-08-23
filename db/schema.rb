@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130816171917) do
+ActiveRecord::Schema.define(:version => 20130821033134) do
+
+  create_table "interests", :force => true do |t|
+    t.string   "category"
+    t.string   "cat_descr"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
