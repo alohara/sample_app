@@ -6,7 +6,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.build(params[:micropost])
     @micropost.category = Interest.find_by_id(@micropost.category_id).category
-	@micropost.content = request.remote_ip
+	@micropost.content_ip = request.remote_ip
 	if @micropost.save
 	  flash[:success] = "Micropost created, yo!"
 	  redirect_to root_path
