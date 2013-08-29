@@ -13,4 +13,5 @@
 class Interest < ActiveRecord::Base
   attr_accessible :id, :active, :cat_descr, :category
   has_many :microposts
+ 
 end

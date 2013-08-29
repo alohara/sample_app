@@ -1,12 +1,16 @@
 class InterestsController < ApplicationController
 before_filter :signed_in_user
-before_filter :admin_user
+before_filter :admin_user, only: [:create, :destroy]
 
   def new
-      @interest = Interest.new
   end
  
- def create
+  def show
+    @interests = Interest.paginate(page: params[:page])
+    @interest = Interest.new
+  end
+ 
+  def create
     @interest = Interest.new(params[:interest])
 	if @interest.save
 	  flash[:success] = "You've created a new Interest, use it carefully."
@@ -14,5 +18,17 @@ before_filter :admin_user
 	else
 	  render 'new'
 	end
+  end
+  
+  def index
+    @interests = Interest.paginate(page: params[:page])
+  end
+  
+  def destroy
+    @interests = Interest.find(params[:id])
+    if @interests.present?
+      @interests.destroy
+    end
+	redirect_to interests_path
   end
 end

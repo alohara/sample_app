@@ -1,0 +1,41 @@
+<% provide(:title, 'Interests') %>
+<div class="row">
+  <aside class="span4">
+    <section>
+	  <%= form_for(@interest) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :category %>
+	  <%= f.text_field :category %>
+	  
+	  <%= f.label :cat_descr %>
+	  <%= f.text_field :cat_descr %>
+	  
+      <label class="checkbox"> <input type="checkbox"> 
+	    <%= f.check_box :active %>
+	    <%= f.label :active %>
+	  </label>
+ 	  
+	  <%= f.submit "Add Interest", class: "btn btn-large btn-primary" %>
+	<% end %>
+	 </section>
+  </aside>
+  <div class="span8">
+    <span>
+        Where is this form?
+	</span>
+	  <%= will_paginate %>
+    <% if @interests.any? %>
+        <h3> Interests (<%= @interests.count %>)</h3>
+          <% @interests.each do |interest| %>
+          <li>
+            <%= interest.category %>
+            <%= interest.cat_descr %>
+            <%= check_box_tag :active, 1, interest.active ? true : false %>
+            <%= link_to "delete", interest, method: :delete, confirm: "You sure homey?" %>
+	      </li>
+          <% end %>
+      <%= will_paginate %>
+    <% end %>
+  </div>
+</div>
